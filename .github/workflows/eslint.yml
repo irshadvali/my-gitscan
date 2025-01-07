@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '17 6 * * 0'
+    - cron: '17 6 * * 0'  # Runs weekly on Sunday at 06:17 UTC
 
 jobs:
   eslint:
@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read
       security-events: write
-      actions: read # Required for private repositories
+      actions: read # Only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
