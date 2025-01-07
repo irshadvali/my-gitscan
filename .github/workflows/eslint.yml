@@ -37,10 +37,22 @@ jobs:
         continue-on-error: true
 
       - name: Debug: List workspace files
-        run: ls -R
+        run: |
+          echo "Listing files in the current directory"
+          ls -l
+          echo "Listing files recursively"
+          ls -R
+
+      - name: Check if eslint-results.sarif exists
+        run: |
+          if [ -f "eslint-results.sarif" ]; then
+            echo "SARIF file exists."
+          else
+            echo "SARIF file does not exist."
+          fi
 
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: ./eslint-results.sarif
+          sarif_file: ./eslint-results.sarif  # Ensure path is correct
           wait-for-processing: true
