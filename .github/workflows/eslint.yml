@@ -36,13 +36,6 @@ jobs:
             --output-file eslint-results.sarif
         continue-on-error: true
 
-      - name: Debug: List workspace files
-        run: |
-          echo "Listing files in the current directory"
-          ls -l
-          echo "Listing files recursively"
-          ls -R
-
       - name: Check if eslint-results.sarif exists
         run: |
           if [ -f "eslint-results.sarif" ]; then
